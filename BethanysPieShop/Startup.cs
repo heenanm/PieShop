@@ -25,6 +25,10 @@ namespace BethanysPieShop
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // register services for session use.
+            services.AddHttpContextAccessor();
+            services.AddSession();
+
             services.AddDbContextPool<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -42,6 +46,9 @@ namespace BethanysPieShop
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Middleware to enable session use
+            app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
