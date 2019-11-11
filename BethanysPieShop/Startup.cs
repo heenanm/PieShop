@@ -35,6 +35,7 @@ namespace BethanysPieShop
             //register our own services
             services.AddScoped<IPieRepository, PieRepository>(); 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
            
             // service to give request a shopping cart
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
