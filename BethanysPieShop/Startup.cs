@@ -35,6 +35,10 @@ namespace BethanysPieShop
             //register our own services
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+           
+            // service to give request a shopping cart
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            
             //register framework services
             services.AddControllersWithViews();
         }
@@ -47,11 +51,11 @@ namespace BethanysPieShop
                 app.UseDeveloperExceptionPage();
             }
 
-            // Middleware to enable session use
-            app.UseSession();
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Middleware to enable session use place before routing.
+            app.UseSession();
 
             app.UseRouting();
 
