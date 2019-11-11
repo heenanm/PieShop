@@ -33,7 +33,7 @@ namespace BethanysPieShop
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //register our own services
-            services.AddScoped<IPieRepository, PieRepository>();
+            services.AddScoped<IPieRepository, PieRepository>(); 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
            
             // service to give request a shopping cart
